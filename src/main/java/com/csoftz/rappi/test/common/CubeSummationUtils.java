@@ -3,8 +3,8 @@
 /* Description:   Utilities for Cube Summation                                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Mar.23/2017                                                 */
-/* Last Modified: Mar.23/2017                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: Mar.24/2017                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2017 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -18,8 +18,8 @@ package com.csoftz.rappi.test.common;
  * Utilities for Cube Summation.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, Mar.11/2017
- * @since 1.8 (JDK), Feb.23/2017
+ * @version 1.3, Mar.24/2017
+ * @since 1.8 (JDK), Mar.23/2017
  */
 public class CubeSummationUtils {
     private int[][][] data; // Information to work on.
@@ -27,6 +27,7 @@ public class CubeSummationUtils {
 
     /**
      * Creates an array with N Dimension and sets all of its cells to zero.
+     *
      * @param N Holds the 3DArray dimension.
      */
     public void createArray(int N) {
@@ -59,9 +60,10 @@ public class CubeSummationUtils {
 
     /**
      * Write to cell in position (x,y,z) the value given by value
-     * @param x Position X
-     * @param y Position Y
-     * @param z Position Z
+     *
+     * @param x     Position X
+     * @param y     Position Y
+     * @param z     Position Z
      * @param value Data to set.
      */
     public void updateCell(int x, int y, int z, int value) {
@@ -71,6 +73,7 @@ public class CubeSummationUtils {
     /**
      * Return the sum from point (x1, y1, z1) through (x2, y2, z2).
      * Note 1<=x1<=x2<=N (N is the dimension of array).
+     *
      * @param x1 Start point in X axis
      * @param y1 Start point in Y axis
      * @param z1 Start point in Z axis

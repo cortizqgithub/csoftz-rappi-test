@@ -4,8 +4,8 @@
 /*                https://www.hackerrank.com/challenges/cube-summation        */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Mar.23/2017                                                 */
-/* Last Modified: Mar.23/2017                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: Mar.24/2017                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2017 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -20,9 +20,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * CubeSummation for HackerRank code challenge (https://www.hackerrank.com/challenges/cube-summation)
  *
+ * @since 1.8 (JDK), Mar.23/2017
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, Mar.11/2017
- * @since 1.8 (JDK), Feb.23/2017
+ * @version 1.2, Mar.24/2017
  */
 @SpringBootApplication
 public class CsoftzRappiTestApplication {

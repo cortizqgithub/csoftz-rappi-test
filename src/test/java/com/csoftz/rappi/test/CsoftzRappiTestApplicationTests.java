@@ -22,9 +22,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * CubeSummation for HackerRank code challenge (https://www.hackerrank.com/challenges/cube-summation)
  *
+ * @since 1.8 (JDK), Mar.23/2017
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, Mar.11/2017
- * @since 1.8 (JDK), Feb.23/2017
+ * @version 1.2, Mar.24/2017
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

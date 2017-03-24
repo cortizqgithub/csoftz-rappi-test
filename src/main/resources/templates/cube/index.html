@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/menu :: menu"></th:block> /*/-->
+<div class="container">
+    <div class="jumbotron">
+        <h1>Rappi Cube Dimension Summation Code Challenge</h1>
+        <p class="lead">
+            Holds the implementation for the code challenge given at
+            https://www.hackerrank.com/challenges/cube-summation
+        </p>
+        <div>
+            <form id="captureData" method="post" action="/cube/process">
+                <div class="container">
+                    <div class="page-header">
+                        <div class="col-xs-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="processingData">Data to Process</label>
+                                <textarea id="processingData" name="processingData"
+                                          class="form-control" rows="6" cols="110"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Do it!" class="btn btn-primary pull-right"/> <a
+                        class="btn btn-default pull-right"
+                        th:href="'/cube'">Return</a>
+                </div>
+            </form>
+        </div>
+        <div><p><b>Instructions</b></p>
+            <p>Enter the input data to process in the text area above</p>
+            <span>
+                <b>Sample Input</b>
+                <br/>
+                2<br/>
+                4 5<br/>
+                UPDATE 2 2 2 4<br/>
+                QUERY 1 1 1 3 3 3<br/>
+                UPDATE 1 1 1 23<br/>
+                QUERY 2 2 2 4 4 4<br/>
+                QUERY 1 1 1 3 3 3<br/>
+                2 4<br/>
+                UPDATE 2 2 2 1<br/>
+                QUERY 1 1 1 1 1 1<br/>
+                QUERY 1 1 1 2 2 2<br/>
+                QUERY 2 2 2 2 2 2<br/>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+</body>
+</html>
