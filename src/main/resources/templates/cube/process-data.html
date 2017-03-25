@@ -9,11 +9,13 @@
     <div class="jumbotron">
         <h1>Rappi Cube Dimension Summation Code Challenge</h1>
         <p><b>Data Processing Results</b></p>
-        <div>
+        <div th:if="${lineDataStatus.valid}">
             <span th:utext="${lineDataStatus.outputResult}"></span>
-            <a class="btn btn-default pull-left" th:href="'/home'">Return</a>
-
         </div>
+        <div th:unless="${lineDataStatus.valid}">
+            <span th:utext="${lineDataStatus.errorDescription}"></span>
+        </div>
+        <a class="btn btn-default pull-left" th:href="'/cube'">Return</a>
         <div><br/><br/>
             <br/><br/>
             <br/><br/>

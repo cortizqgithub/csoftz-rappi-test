@@ -3,8 +3,8 @@
 /* Description:   Utilities for Cube Summation                                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Mar.23/2017                                                 */
-/* Last Modified: Mar.24/2017                                                 */
-/* Version:       1.3                                                         */
+/* Last Modified: Mar.25/2017                                                 */
+/* Version:       1.4                                                         */
 /* Copyright (c), 2017 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -18,7 +18,7 @@ package com.csoftz.rappi.test.common;
  * Utilities for Cube Summation.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.3, Mar.24/2017
+ * @version 1.4, Mar.25/2017
  * @since 1.8 (JDK), Mar.23/2017
  */
 public class CubeSummationUtils {

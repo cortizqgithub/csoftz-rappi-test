@@ -74,7 +74,7 @@ public class CubeController {
     @PostMapping("/process")
     public String processCubeData(String processingData, Model model) {
         if (logger.isDebugEnabled()) {
-            logger.debug("process data started");
+            logger.debug("processCubeData started");
             logger.info("processinData=[" + processingData + "]");
         }
         LineDataStatus lineDataStatus = cubeSummationService.validateProcessingDataFormat(processingData);

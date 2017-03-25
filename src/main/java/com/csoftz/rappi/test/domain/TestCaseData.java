@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class TestCaseData {
     private int arrayDimension;
-    private List<String> commands;
+    private List<CommandInfo> commands;
 
     public TestCaseData() {
         this.arrayDimension = 0;
@@ -41,11 +41,11 @@ public class TestCaseData {
         this.arrayDimension = arrayDimension;
     }
 
-    public List<String> getCommands() {
+    public List<CommandInfo> getCommands() {
         return commands;
     }
 
-    public void setCommands(List<String> commands) {
+    public void setCommands(List<CommandInfo> commands) {
         this.commands = commands;
     }
 
