@@ -28,27 +28,50 @@ public class TestCaseData {
     private int arrayDimension;
     private List<CommandInfo> commands;
 
+    /**
+     * Default constructor
+     */
     public TestCaseData() {
         this.arrayDimension = 0;
         this.commands = new ArrayList<>();
     }
 
+    /**
+     * Getter for Size of cube dimension
+     * @return Value to get
+     */
     public int getArrayDimension() {
         return arrayDimension;
     }
 
+    /**
+     * Setter for Size of cube dimension
+     * @param arrayDimension Value to set
+     */
     public void setArrayDimension(int arrayDimension) {
         this.arrayDimension = arrayDimension;
     }
 
+    /**
+     * Getter for Commands to process
+     * @return Commands to get
+     */
     public List<CommandInfo> getCommands() {
         return commands;
     }
 
+    /**
+     * Setter for Commands to process
+     * @param commands
+     */
     public void setCommands(List<CommandInfo> commands) {
         this.commands = commands;
     }
 
+    /**
+     * String interpretation.
+     * @return Object field printing.
+     */
     @Override
     public String toString() {
         return "TestCaseData{" +

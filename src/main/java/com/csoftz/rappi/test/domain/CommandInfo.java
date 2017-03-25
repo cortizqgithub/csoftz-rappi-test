@@ -28,19 +28,34 @@ public class CommandInfo {
     private String commandText;
     private List<Integer> parameters;
 
+    /**
+     * Default constructor
+     */
     public CommandInfo() {
         this.commandText = "";
         this.parameters = new ArrayList<>();
     }
 
+    /**
+     * Getter for parameters
+     * @return List of parameters
+     */
     public List<Integer> getParameters() {
         return parameters;
     }
 
+    /**
+     * Setter for parameters
+     * @param parameters Data to set
+     */
     public void setParameters(List<Integer> parameters) {
         this.parameters = parameters;
     }
 
+    /**
+     * String interpretation.
+     * @return Object field printing.
+     */
     @Override
     public String toString() {
         return "CommandInfo{" +
@@ -49,10 +64,18 @@ public class CommandInfo {
                 '}';
     }
 
+    /**
+     * Getter for commandText
+     * @return Text of command
+     */
     public String getCommandText() {
         return commandText;
     }
 
+    /**
+     * Setter for commandText
+     * @param commandText Data to set
+     */
     public void setCommandText(String commandText) {
         this.commandText = commandText;
     }
