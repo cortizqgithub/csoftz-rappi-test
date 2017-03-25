@@ -14,6 +14,7 @@
 
 package com.csoftz.rappi.test.service;
 
+import com.csoftz.rappi.test.common.CubeSummationUtils;
 import com.csoftz.rappi.test.domain.CommandInfo;
 import com.csoftz.rappi.test.domain.LineDataStatus;
 import com.csoftz.rappi.test.domain.TestCaseData;
@@ -82,6 +83,11 @@ public class CubeSummationService implements ICubeSummationService {
                             lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. No test cases number supplied");
                             break;
                         }
+                        if (!(numTestCases >= 1 && numTestCases <= 50)) {
+                            lineStatus.setValid(false);
+                            lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Number of test cases must be 1 <= T <= 50");
+                            break;
+                        }
                         testCaseData = new TestCaseData();
                     }
                 } else {
@@ -126,6 +132,21 @@ public class CubeSummationService implements ICubeSummationService {
                                 lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Number of operations not properly set");
                                 break;
                             }
+
+                            // Let's validate that arrayDimension (N) is in range 1 <= N <= 100
+                            if (!(arrayDimension >= 1 && arrayDimension <= 100)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Dimension of Cube (N) must be 1 <= N <= 100 ");
+                                break;
+                            }
+
+                            // Let's validate that number of commands (M) is 1 <= M <= 1000
+                            if (!(numExpectedCommands >= 1 && numExpectedCommands <= 100)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Dimension of Expected commands (M) must be 1 <= N <= 100 ");
+                                break;
+                            }
+
                             testCaseData.setArrayDimension(arrayDimension);
                             dimensionLinePresent = true;
                             onScannigTestCase = true;
@@ -185,10 +206,29 @@ public class CubeSummationService implements ICubeSummationService {
                                 break;
                             }
 
+                            // Now let's validate that parameters are good.
+
                             // At this point command line is correct. But it may be not in the expected position.
                             if (!dimensionLinePresent) {
                                 lineStatus.setValid(false);
                                 lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Expected Dimension and opertations quantity but UPDATE or QUERY found.");
+                                break;
+                            }
+
+                            // Let's validate parameters constraints
+                            if (!(x1 >= 1 && x1 <= arrayDimension)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Parameter x must be in range 1 <= x <= N");
+                                break;
+                            }
+                            if (!(y1 >= 1 && y1 <= arrayDimension)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Parameter x must be in range 1 <= x <= N");
+                                break;
+                            }
+                            if (!(z1 >= 1 && z1 <= arrayDimension)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Parameter x must be in range 1 <= z <= N");
                                 break;
                             }
 
@@ -285,6 +325,23 @@ public class CubeSummationService implements ICubeSummationService {
                                 break;
                             }
 
+                            // Let's validate parameters constraints
+                            if (!(x1 >= 1 && x1 <= x2 && x2 <= arrayDimension)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Parameter x must be in range 1 <= x1 <= x2 <= N ");
+                                break;
+                            }
+                            if (!(y1 >= 1 && y1 <= y2 && y2 <= arrayDimension)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Parameter x must be in range 1 <= y1 <= y2 <= N ");
+                                break;
+                            }
+                            if (!(z1 >= 1 && z1 <= z2 && z2 <= arrayDimension)) {
+                                lineStatus.setValid(false);
+                                lineStatus.setErrorDescription("Line " + (i + 1) + ": Invalid format. Parameter x must be in range 1 <= z1 <= z2 <= N ");
+                                break;
+                            }
+
                             CommandInfo commandInfo = new CommandInfo();
                             commandInfo.setCommandText(commandText);
                             List<Integer> params = commandInfo.getParameters();
@@ -300,10 +357,12 @@ public class CubeSummationService implements ICubeSummationService {
                 }
             }
             numTestCasesScanned++;
-            int numAddedCommands = testCaseData.getCommands().size();
-            if (numAddedCommands != numExpectedCommands) {
-                lineStatus.setValid(false);
-                lineStatus.setErrorDescription("Invalid format. Unxpected number of commands.");
+            if (lineStatus.isValid()) {
+                int numAddedCommands = testCaseData.getCommands().size();
+                if (numAddedCommands != numExpectedCommands) {
+                    lineStatus.setValid(false);
+                    lineStatus.setErrorDescription("Invalid format. Unxpected number of commands.");
+                }
             }
         }
         lineStatus.getTestCases().add(testCaseData);
@@ -325,11 +384,25 @@ public class CubeSummationService implements ICubeSummationService {
      */
     @Override
     public void execute(LineDataStatus lineDataStatus) {
+        StringBuilder sb = new StringBuilder();
+        CubeSummationUtils cubeSummationUtils = new CubeSummationUtils();
         List<TestCaseData> testCases = lineDataStatus.getTestCases();
         for (TestCaseData t : testCases) {
-
-
+            cubeSummationUtils.createArray(t.getArrayDimension());
+            for (CommandInfo c : t.getCommands()) {
+                String commandText = c.getCommandText();
+                List<Integer> l = c.getParameters();
+                switch (commandText) {
+                    case "UPDATE":
+                        cubeSummationUtils.updateCell(l.get(0), l.get(1), l.get(2), l.get(3));
+                        break;
+                    case "QUERY":
+                        int sum = cubeSummationUtils.summation(l.get(0), l.get(1), l.get(2), l.get(3), l.get(4), l.get(5));
+                        sb.append(sum + "<br/>");
+                        break;
+                }
+            }
         }
-
+        lineDataStatus.setOutputResult(sb.toString());
     }
 }
