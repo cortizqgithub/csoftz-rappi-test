@@ -1,0 +1,14 @@
+El código fuente presentado está en PHP, debo admitir que no soy conocedor de PHP sin embargo analizo
+el código fuente presentado con una visión agnostica del lenguaje de programación (algo así como si fuera pseudo codigo).
+
+1. Elimnar comentarios, solo se dejan los comentarios que ayuden a entender la funcionalidad o que sean relevantes
+   ya que comentar codigo confunde luego porque no se sabe si lo que debe ser es el comentario o no, normalmente
+   los desarrolladores que dejamos este tipo de cosas en el código final es con el criterio lo dejo porque luego 
+   podría necesitar, sin embargo esto es mejor hacerlo con git (en el historial de git).
+2. Se elimina la referencia a  $servicio = Service::find($id);, es suficiente con una de ellas.
+3. Cambio $id = Input::get('service_id');
+    $servicio = Service::find($id);
+    por $servicio = Service::find(Input::get('service_id)); ya que $id no se usa en ninguna otra parte.
+4. $driverId = Input::get('driver_id'); Se crea esta variable para una mayor claridad.
+5. Simplificación de llamado Service::Update
+6. La refactorización debe dar claridad y coherencia en la estructuración del código. No obstante debe hacer lo mismo para lo cual fue diseñado.

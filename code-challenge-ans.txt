@@ -1,0 +1,49 @@
+Medellín Mar.25/2017
+THis file is also contained in repository.
+
+1. CODING CHALLENGE
+The github repository where the code resides is in https://github.com/cortizqgithub/csoftz-rappi-test
+
+The programmin language is Java 8, using Spring Boot (http://projects.spring.io/spring-boot/) which uses the Spring Web module
+that allows to build a web page using MVC pattern.
+- The Models are in the package com.csoftz.rappi.test.domain aside with helper domain objects.
+- The Views uses Tymeleaf technology for Spring, basically they are HTML pages rendering to browser.
+- The controllers are in the package com.csoftz.rappi.test.controller
+
+Now the classes description is in each file as a javadoc. 
+The controller classes are
+- HomeController is responsible to attend the url page at http://localhost:8080/home
+- CubeController is responsible to attend the url page at http://localhost:8080/cube and the results are presented in http://localhost:8080/cube/process
+
+The domain classes are
+- CommandInfo: Holds the statements such as UPDATE and QUERY.
+- TestCaseData: Represents the test case to use about the code challenge. One of its attributes ara a list of CommandInfo
+- LineDataStatus: Represents an object with the validation of the input and output for problem.
+
+The service and other helper classes follow.
+- com.csoftz.rappi.test.service contains all classes for services, here we have class CubeSummationService which
+  holds the helper or service to process the gien input format and execute if correct the operations at hand.
+- com.csoftz.rappi.test.common contains utilities or helper classes here there is a class to manipulate the cube array.
+
+2.CODE REFACTORING
+The file refactored is named as rappi2.txt which is located in github repository (url above).
+The explanation for refactoring is in file rappi-notes.txt also in github repository.
+
+3. PREGUNTAS Spanish language written
+- ¿En qué consiste el principio de responsabilidad única? ¿Cuál es su propósito?
+Según la definición de Wikipedia https://es.wikipedia.org/wiki/Principio_de_responsabilidad_%C3%BAnica
+"Establece que cada módulo o clase debe tener responsabilidad sobre una sola parte de la funcionalidad proporcionada por el software 
+y esta responsabilidad debe estar encapsulada en su totalidad por la clase."
+
+Si se sigue este concepto, las clases mostradas en la solución no mezclan su uso, es decir, que si una clase requiere lo que hace otra
+clase, éste debe instanciar la otra y llamar su funcionalidad y no duplicar en una funcionalidad de una clase en otra para no usarla.
+
+Este en definitiva es el principio que se usa en arquitectura conducidas por MicroServicios, los cambios que se hagan debe afectar solo la clase
+que lo implementa, no el exterior, es un contrato que se debe cumplir.
+
+- ¿Qué características tiene según tu opinión “buen” código o código limpio?
+En mi opinión.
+1. Los métodos no deben ser muy extensos, para esto se recomienda partir en una o más funciones o métodos.
+2. No usar variables globales.
+3. Controlar las mutaciones de todas las variables.
+4. Sea legible, entendible y rafactorizable.
