@@ -14,6 +14,7 @@
 
 package com.csoftz.rappi.test.controller;
 
+import com.csoftz.rappi.test.domain.LineDataStatus;
 import com.csoftz.rappi.test.service.interfaces.ICubeSummationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,18 +72,16 @@ public class CubeController {
      * @return An HTML page with processing results.
      */
     @PostMapping("/process")
-    public String processCubeData(String processingData) {
+    public String processCubeData(String processingData, Model model) {
         if (logger.isDebugEnabled()) {
             logger.debug("process data started");
+            logger.info("processinData=[" + processingData + "]");
         }
-        logger.info(processingData);
-        //List<String> lines = new ArrayList<>();
-        String[] lines = processingData.split("\\r?\\n");
-        for (String s: lines) {
-            logger.info(s);
-
+        LineDataStatus lineDataStatus = cubeSummationService.validateProcessingDataFormat(processingData);
+        if (lineDataStatus.isValid()) {
+            cubeSummationService.execute(lineDataStatus);
         }
-
+        model.addAttribute(lineDataStatus);
         return "cube/process-data";
     }
 }

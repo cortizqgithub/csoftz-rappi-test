@@ -14,6 +14,7 @@
 
 package com.csoftz.rappi.test.service;
 
+import com.csoftz.rappi.test.domain.LineDataStatus;
 import com.csoftz.rappi.test.service.interfaces.ICubeSummationService;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CubeSummationService implements ICubeSummationService {
+    /**
+     * See documentation in interface class.
+     *
+     * @param processingData Data to Validate
+     * @return The data to process and its status.
+     */
+    @Override
+    public LineDataStatus validateProcessingDataFormat(String processingData) {
+        LineDataStatus lineStatus = new LineDataStatus();
+        String[] lines = processingData.split("\\r?\\n");
+        for (String line : lines) {
+            String[] items = line.split(" ");
+            System.out.println("Items length=" + items.length);
+        }
+        return lineStatus;
+    }
+
+    /**
+     * See documentation in interface class.
+     * @param lineDataStatus The data to work on.
+     */
+    @Override
+    public void execute(LineDataStatus lineDataStatus) {
+
+    }
 }
